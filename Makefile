@@ -39,7 +39,8 @@ kernel/kernel.bin: boot/kernel_entry.o $(kernel_obj)
 	@$(LD) $(LDFLAGS) --oformat binary $(addprefix $(OUTPUT_DIR), $^) -o $(OUTPUT_DIR)$@
 
 kernel.elf: boot/kernel_entry.o $(kernel_obj)
-	$(LD) $(LDFLAGS) $(addprefix $(OUTPUT_DIR), $^) -o $(OUTPUT_DIR)$@
+	@echo LD $@
+	@$(LD) $(LDFLAGS) $(addprefix $(OUTPUT_DIR), $^) -o $(OUTPUT_DIR)$@
 
 %.o: %.cpp ${kernel_head}
 	@echo GXX $@
