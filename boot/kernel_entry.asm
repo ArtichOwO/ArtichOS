@@ -1,12 +1,16 @@
 ; TODO: rewrite this shit
+section .text
+global _start
+
 [bits 16]
 [extern main]
 
-mov si, msg_kern
-call print
+_start:
+	mov si, msg_kern
+	call print
 
-call main
-jmp $
+	call main
+	jmp $
 
 print:
 	mov bp, sp
