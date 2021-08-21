@@ -37,13 +37,13 @@ print_drive: ; Print `boot_drive`
 
 load_disk:
   mov dl, [boot_drive]
-  mov ax, 0208h     ; AH=2 disk read, AL = number sectors to read = 8 (4k)
-  mov cx, 0002h     ; CH=Cylinder number 0, CL=sector to start reading = 2
-                    ;    Sector 2 = sector right after boot sector
-  xor dh, dh        ; DH=head number = 0
-  mov bx, 1000h     ; ES:BX = memory to read into. ES=0, BX=7e00h right 
-                    ;    after the first 512 bytes read by BIOS
-  int 13h           ; Int 13h/AH=02 disk read
+  mov ax, 0208h           ; AH=2 disk read, AL = number sectors to read = 8 (4k)
+  mov cx, 0002h           ; CH=Cylinder number 0, CL=sector to start reading = 2
+                          ;    Sector 2 = sector right after boot sector
+  xor dh, dh              ; DH=head number = 0
+  mov bx, kernel_offset   ; ES:BX = memory to read into. ES=0, BX=kernel_offset right 
+                          ;    after the first 512 bytes read by BIOS
+  int 13h                 ; Int 13h/AH=02 disk read
   jc disk_error
 
   cmp al, 08h
