@@ -17,9 +17,9 @@ QEMU = qemu-system-x86_64
 src_dir_1 = $(wildcard */)
 src_dir = $(filter-out $(OUTPUT_DIR), $(src_dir_1))
 
-kernel_src = $(wildcard kernel/*.cpp)
-kernel_src += $(wildcard kernel/*.c)
-kernel_head = $(wildcard kernel/*.h)
+kernel_src = $(wildcard kernel/*.cpp drivers/*.cpp)
+kernel_src += $(wildcard kernel/*.c drivers/*.c)
+kernel_head = $(wildcard kernel/*.h drivers/*.h)
 
 kernel_obj_1 = $(kernel_src:.cpp=.o)
 kernel_obj = $(kernel_obj_1:.c=.o)
