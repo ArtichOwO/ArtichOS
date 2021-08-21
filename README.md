@@ -1,8 +1,6 @@
 # ArtichOS
-Almost entirely copied from https://github.com/cfenollosa/os-tutorial  
-I wanted to learn some new shit so here's my "code"  
-I'll improve it one day, maybe  
-Doesn't boot on real hardware sadly  
+A simple 16 bit operating system, doesn't do much but hey! maybe one day :3
+Should boot on real HW, please open an issue if not!
   
 ## Build instructions
 ### Prerequisites:
@@ -51,7 +49,7 @@ You should have all the GNU binutils and the compiler at `/usr/local/i386elfgcc/
 GDB:
 ```bash
 cd /tmp/src
-curl -O http://ftp.rediris.es/mirror/GNU/gdb/gdb-M.m.tar.gz
+curl -O http://ftp.rediris.es/mirror/GNU/gdb/gdb-M.m.tar.gz # Replace M.m with your desired version
 tar xf gdb-M.m.tar.gz
 mkdir gdb-build
 cd gdb-build
@@ -70,7 +68,5 @@ You may want to add the `$PATH` to your `.bashrc`.
   Build and launch QEMU
 - `build`:  
   Build
-- `debug`:  
-	Build, launch QEMU with gdb attached
 - `clean`:  
 	Clean `output`
