@@ -26,4 +26,4 @@ print:
 	mov sp, bp
 	ret
 
-msg_kern db "Kernel loaded, welcome to ArtichOS!",0
+msg_kern db "Kernel loaded!",0
