@@ -10,8 +10,7 @@ _start:
 	call print
 
 	call main
-	mov si, msg_error
-	call print
+	jmp $
 
 print:
 	mov bp, sp
@@ -27,5 +26,4 @@ print:
 	mov sp, bp
 	ret
 
-msg_kern db "Kernel loaded, welcome to ArtichOS!",10,13,0
-msg_error db "main returned; error",10,13,0
+msg_kern db "Kernel loaded, welcome to ArtichOS!",0
