@@ -34,7 +34,7 @@ make all install 2>&1 | tee make.log
 GCC:
 ```bash
 cd /tmp/src
-curl -O https://ftp.gnu.org/gnu/gcc/gcc-4.9.1/gcc-M.m.m.tar.bz2 # Replace M.m.m with your desired version
+curl -O https://ftp.gnu.org/gnu/gcc/gcc-M.m.m/gcc-M.m.m.tar.bz2 # Replace M.m.m with your desired version
 tar xf gcc-M.m.m.tar.bz2
 mkdir gcc-build
 cd gcc-build
