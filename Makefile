@@ -12,7 +12,7 @@ CFLAGS = -ffreestanding -c -g -m16 -nostdlib -nostdinc -fno-builtin \
 		 		 -Wall -Wextra
 LDFLAGS = -Ttext 0x1000
 
-QEMU = qemu-system-x86_64
+QEMU = qemu-system-i386
 
 src_dir_1 = $(wildcard */)
 src_dir = $(filter-out $(OUTPUT_DIR), $(src_dir_1))
@@ -65,7 +65,6 @@ clean:
 run: ArtichOS.bin
 	$(QEMU) -drive format=raw,file=$(OUTPUT_DIR)$<,index=0,if=floppy
 
-# Doesn't work atm idk why
 run_debug: ArtichOS.bin kernel.elf
 	$(QEMU) -s -drive format=raw,file=$(OUTPUT_DIR)$<,index=0,if=floppy &
 	${GDB} -ex "target remote localhost:1234" -ex "symbol-file $(OUTPUT_DIR)kernel.elf"
