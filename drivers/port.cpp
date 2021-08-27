@@ -31,3 +31,7 @@ void port_word_out(unsigned short port, unsigned short data) {
             : 
             : "a" (data), "d" (port));
 }
+
+void io_wait() {
+    port_byte_out(0x80, 0);
+}
