@@ -3,6 +3,7 @@
 
 namespace std {
 	void itoa(int n, char str[]);
+	void itox(unsigned int i, char * str);
 	void reverse(char s[]);
 	int strlen(char s[]);
 	void backspace(char s[]);

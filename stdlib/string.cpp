@@ -15,6 +15,18 @@ namespace std {
         reverse(str);
     }
 
+    void itox(unsigned int i, char * str) {
+        unsigned char n;
+     
+        str += 4;
+        *str = '\0';
+     
+        for (n = 4; n != 0; --n) {
+            *--str = "0123456789ABCDEF"[i & 0x0F];
+            i >>= 4;
+        }
+    }
+
     void reverse(char s[]) {
         int c, i, j;
         for (i = 0, j = strlen(s)-1; i < j; i++, j--) {
