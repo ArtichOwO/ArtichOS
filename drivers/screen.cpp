@@ -1,5 +1,6 @@
 #include "screen.h"
 #include "port.h"
+#include "../stdlib/stdlib.h"
 
 char * detectvideotype() {
     char * video_memory_addr;
@@ -44,6 +45,20 @@ int print_char(char c, int col, int row, char attr) {
         video_memory_addr[offset] = c;
         video_memory_addr[offset+1] = attr;
         offset += 2;
+    }
+
+    /* Check if the offset is over screen size and scroll */
+    if (offset >= MAX_ROWS * MAX_COLS * 2) {
+        for (int i = 1; i < MAX_ROWS; i++) 
+            std::memcpy((char *)(get_offset(0, i) + video_memory_addr),
+                        (char *)(get_offset(0, i-1) + video_memory_addr),
+                        MAX_COLS * 2);
+
+        /* Blank last line */
+        char * last_line = (char *) (get_offset(0, MAX_ROWS-1) + (unsigned char *) video_memory_addr);
+        for (int i = 0; i < MAX_COLS * 2; i++) last_line[i] = 0;
+
+        offset -= 2 * MAX_COLS;
     }
 
     set_cursor_offset(offset);
