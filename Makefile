@@ -19,10 +19,12 @@ src_dir = $(filter-out $(OUTPUT_DIR), $(src_dir_1))
 
 kernel_src = $(wildcard kernel/*.cpp drivers/*.cpp stdlib/*.cpp)
 kernel_src += $(wildcard kernel/*.c drivers/*.c stdlib/*.c)
+kernel_src += $(wildcard kernel/*.asm drivers/*.asm stdlib/*.asm)
 kernel_head = $(wildcard kernel/*.h drivers/*.h stdlib/*.h)
 
 kernel_obj_1 = $(kernel_src:.cpp=.o)
-kernel_obj = $(kernel_obj_1:.c=.o)
+kernel_obj_2 = $(kernel_obj_1:.c=.o)
+kernel_obj = $(kernel_obj_2:.asm=.o)
 
 .PHONY: all build debug clean run run_debug prebuild
 
