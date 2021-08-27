@@ -1,16 +1,16 @@
 kernel_offset equ 0x1000
 
 [bits 16]
-[org 0x7c00]    ; this MBR code resides here (512 bytes)
+[org 0x7c00] ; this MBR code resides here (512 bytes)
 
 mov [boot_drive], dl ; BIOS place drive into dl when loading boot sector
 
 xor ax, ax
-mov ds, ax        ; DS=0
-mov es, ax        ; ES=0
+mov ds, ax ; DS=0
+mov es, ax ; ES=0
 
-mov ss, ax    ; Stack addresses
-mov sp, ax    ; Place SS:SP at 0000h:0000h
+mov ss, ax ; Stack addresses
+mov sp, ax ; Place SS:SP at 0000h:0000h
 cld
 
 mov al, 03h
