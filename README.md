@@ -34,8 +34,8 @@ make all install 2>&1 | tee make.log
 GCC:
 ```bash
 cd /tmp/src
-curl -O https://ftp.gnu.org/gnu/gcc/gcc-M.m.m/gcc-M.m.m.tar.bz2 # Replace M.m.m with your desired version
-tar xf gcc-M.m.m.tar.bz2
+curl -O https://ftp.gnu.org/gnu/gcc/gcc-M.m.m/gcc-M.m.m.tar.gz # Replace M.m.m with your desired version
+tar xf gcc-M.m.m.tar.gz
 mkdir gcc-build
 cd gcc-build
 ../gcc-M.m.m/configure --target=$TARGET --prefix="$PREFIX" --disable-nls --disable-libssp --enable-languages=c,c++ --without-headers
