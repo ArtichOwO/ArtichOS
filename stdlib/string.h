@@ -2,7 +2,7 @@
 #define STD_STRINGS_H
 
 namespace std {
-	void int_to_ascii(int n, char str[]);
+	void itoa(int n, char str[]);
 	void reverse(char s[]);
 	int strlen(char s[]);
 	void backspace(char s[]);
