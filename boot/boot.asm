@@ -10,7 +10,7 @@ mov ds, ax        ; DS=0
 mov es, ax        ; ES=0
 
 mov ss, ax    ; Stack addresses
-mov sp, 7c00h ; Place SS:SP at 0000h:7c00h
+mov sp, ax    ; Place SS:SP at 0000h:0000h
 cld
 
 mov al, 03h
