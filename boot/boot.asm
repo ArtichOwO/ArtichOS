@@ -1,4 +1,5 @@
 kernel_offset equ 0x1000
+sector_quantity equ 0x10
 
 [bits 16]
 [org 0x7c00] ; this MBR code resides here (512 bytes)
@@ -37,7 +38,8 @@ print_drive: ; Print `boot_drive`
 
 load_disk:
   mov dl, [boot_drive]
-  mov ax, 0208h           ; AH=2 disk read, AL = number sectors to read = 8 (4k)
+  mov ah, 02h             ; AH=2 disk read, 
+  mov al, sector_quantity ; AL = number sectors to read = sector_quantity
   mov cx, 0002h           ; CH=Cylinder number 0, CL=sector to start reading = 2
                           ;    Sector 2 = sector right after boot sector
   xor dh, dh              ; DH=head number = 0
@@ -46,7 +48,7 @@ load_disk:
   int 13h                 ; Int 13h/AH=02 disk read
   jc disk_error
 
-  cmp al, 08h
+  cmp al, sector_quantity
   jne error
 
 jmp kernel_offset ; Jump to kernel
