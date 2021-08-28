@@ -1,5 +1,5 @@
 kernel_offset equ 0x1000
-sector_quantity equ 0x10
+sector_quantity equ 0x20
 
 [bits 16]
 [org 0x7c00] ; this MBR code resides here (512 bytes)
