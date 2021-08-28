@@ -39,6 +39,7 @@ int print_char(char c, int col, int row, char attr) {
         row = get_offset_row(offset);
         offset = get_offset(0, row+1);
     } else if (c == 0x08) { /* Backspace */
+        offset -= 2;
         video_memory_addr[offset] = ' ';
         video_memory_addr[offset+1] = attr;
     } else {
