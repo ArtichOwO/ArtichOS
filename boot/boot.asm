@@ -1,5 +1,5 @@
 kernel_offset equ 0x1000
-sector_quantity equ 0x20
+sector_quantity equ 0x30
 
 [bits 16]
 [org 0x7c00] ; this MBR code resides here (512 bytes)
@@ -52,6 +52,7 @@ load_disk:
   jne error
 
 jmp kernel_offset ; Jump to kernel
+jmp $
 
 disk_error:
   call error ; Print error msg
