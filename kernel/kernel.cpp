@@ -32,9 +32,11 @@ void main() {
     char hello_cmd[] = "hello";
     char colours_cmd[] = "colours";
     char shdwn_cmd[] = "shutdown";
+    char reboot_cmd[] = "reboot";
     char switchc_cmd[] = "switchc";
     char * colours_msg = (char *) "\nColours! 0x00 to 0xFF, with the letter A:\n";
     char * shdwn_msg = (char *) "\nPress any key to confirm shutdown, bye-nee~~\n";
+    char * reboot_msg = (char *) "\nPress any key to confirm reboot, see ya'~~\n";
     char buffer[256];
 
     while (true) {
@@ -71,6 +73,11 @@ void main() {
             kprint(shdwn_msg);
             get_key();
             apm::shutdown();
+            return;
+        } else if (std::strcmp(buffer, reboot_cmd) == 0) {
+            kprint(reboot_msg);
+            get_key();
+            apm::hardware_reset();
             return;
         } else if (std::strcmp(buffer, switchc_cmd) == 0) {
             if (video_color_mode == 0) {

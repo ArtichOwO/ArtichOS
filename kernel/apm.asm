@@ -4,6 +4,7 @@
 
 global init
 global shutdown
+global hardware_reset
 
 init:
 	pusha
@@ -98,6 +99,13 @@ shutdown:
 	mov cx, 03h              ;...'Off'.
 	int 15h
 	jc apm_error
+
+hardware_reset:
+	xor ax, ax
+  mov ds, ax
+  mov ax, 0x1234
+	mov [0x0472], ax
+	jmp 0xFFFF:0000
 
 apm_error:
 	mov si, apm_err_msg
