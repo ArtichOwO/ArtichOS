@@ -31,10 +31,12 @@ void main() {
     char * no_cmd = (char *) "\nCommand not found!\n";
     char hello_cmd[] = "hello";
     char colours_cmd[] = "colours";
+    char chars_cmd[] = "chars";
     char shdwn_cmd[] = "shutdown";
     char reboot_cmd[] = "reboot";
     char switchc_cmd[] = "switchc";
     char * colours_msg = (char *) "\nColours! 0x00 to 0xFF, with the letter A:\n";
+    char * chars_msg = (char *) "\nCharacters! 0x00 to 0xFF:\n";
     char * shdwn_msg = (char *) "\nPress any key to confirm shutdown, bye-nee~~\n";
     char * reboot_msg = (char *) "\nPress any key to confirm reboot, see ya'~~\n";
     char buffer[256];
@@ -68,6 +70,14 @@ void main() {
             kprint(colours_msg);
             for (i = 0; i < 0x100; i++) {
                 kprint((char *)"A", i);
+            }
+        } else if (std::strcmp(buffer, chars_cmd) == 0) {
+            kprint(chars_msg);
+            for (i = 0; i < 0x100; i++) {
+                char character[2];
+                character[0] = i;
+                character[1] = '\0';
+                kprint(&character[0], 0x0e);
             }
         } else if (std::strcmp(buffer, shdwn_cmd) == 0) {
             kprint(shdwn_msg);
