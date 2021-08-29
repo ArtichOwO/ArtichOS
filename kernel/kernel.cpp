@@ -1,9 +1,13 @@
 #include "../drivers/screen.h"
 #include "../drivers/keyboard.h"
 #include "../stdlib/stdlib.h"
+extern "C" {
+#include "apm.h"
+}
 
 void main() {
-    clear_screen();
+    apm::init();
+    //clear_screen();
 
     char * msg = (char *) "\nHello, World! Welcome to \n\n"
                 "  ___       _   _      _     _____ _____ \n"
@@ -24,9 +28,11 @@ void main() {
     char * arrows = (char *) "\n>>> ";
     char * no_cmd = (char *) "\nCommand not found!\n";
     char hello_cmd[] = "hello";
+    char colours_cmd[] = "colours";
+    char shdwn_cmd[] = "shutdown";
+    char * colours_msg = (char *) "\nColours! 0x00 to 0xFF, with the letter A:\n";
+    char * shdwn_msg = (char *) "\nPress any key to confirm shutdown, bye-nee~~\n";
     char buffer[256];
-
-    char * i_msg;
 
     while (true) {
         kprint(arrows);
@@ -50,9 +56,19 @@ void main() {
             }
         }
 
-        /* Yes, the only command available is "hello" */
+        /* Commands: `hello`, `colours` and `shutdown` */
         if (std::strcmp(buffer, hello_cmd) == 0) {
             kprint(msg, 0x02);
+        } else if (std::strcmp(buffer, colours_cmd) == 0) {
+            kprint(colours_msg);
+            for (i = 0; i < 0x100; i++) {
+                kprint((char *)"A", i);
+            }
+        } else if (std::strcmp(buffer, shdwn_cmd) == 0) {
+            kprint(shdwn_msg);
+            get_key();
+            apm::shutdown();
+            return;
         } else {
             kprint(no_cmd, 0x04);
         }
