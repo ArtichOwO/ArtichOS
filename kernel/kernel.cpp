@@ -2,6 +2,7 @@
 #include "../drivers/keyboard.h"
 #include "../stdlib/stdlib.h"
 extern "C" {
+#include "interrupts.h"
 #include "apm.h"
 }
 
@@ -25,11 +26,13 @@ void main() {
      */
     key_t key;
     int i;
+    int video_color_mode = 0;
     char * arrows = (char *) "\n>>> ";
     char * no_cmd = (char *) "\nCommand not found!\n";
     char hello_cmd[] = "hello";
     char colours_cmd[] = "colours";
     char shdwn_cmd[] = "shutdown";
+    char switchc_cmd[] = "switchc";
     char * colours_msg = (char *) "\nColours! 0x00 to 0xFF, with the letter A:\n";
     char * shdwn_msg = (char *) "\nPress any key to confirm shutdown, bye-nee~~\n";
     char buffer[256];
@@ -69,6 +72,14 @@ void main() {
             get_key();
             apm::shutdown();
             return;
+        } else if (std::strcmp(buffer, switchc_cmd) == 0) {
+            if (video_color_mode == 0) {
+                itr::scrn_toggle_blink();
+                video_color_mode = 1;
+            } else {
+                itr::scrn_toggle_intensity();
+                video_color_mode = 0;
+            }
         } else {
             kprint(no_cmd, 0x04);
         }
