@@ -1,104 +1,15 @@
-#include "../drivers/screen.h"
-#include "../drivers/keyboard.h"
-#include "../stdlib/stdlib.h"
 extern "C" {
-#include "interrupts.h"
 #include "apm.h"
 }
+#include "../apps/hello/hello.h"
+#include "../apps/shell/shell.h"
 
 void main() {
-    apm::init();
-    //clear_screen();
+  apm::init();
+  //clear_screen();
 
-    char * msg = (char *) "\nHello, World! Welcome to \n\n"
-                "  ___       _   _      _     _____ _____ \n"
-                " / _ \\     | | (_)    | |   |  _  /  ___|\n"
-                "/ /_\\ \\_ __| |_ _  ___| |__ | | | \\ `--. \n"
-                "|  _  | '__| __| |/ __| '_ \\| | | |`--. \\\n"
-                "| | | | |  | |_| | (__| | | \\ \\_/ /\\__/ /\n"
-                "\\_| |_/_|   \\__|_|\\___|_| |_|\\___/\\____/ \n\n"
-                "Please wait, there will be soon more things to do here ;3\n\n";
+  char * no_args[0];
 
-    kprint(msg, 0x02);
-
-    /*
-     * Some tests, will remove it soon
-     */
-    key_t key;
-    int i;
-    int video_color_mode = 0;
-    char * arrows = (char *) "\n>>> ";
-    char * no_cmd = (char *) "\nCommand not found!\n";
-    char hello_cmd[] = "hello";
-    char colours_cmd[] = "colours";
-    char chars_cmd[] = "chars";
-    char shdwn_cmd[] = "shutdown";
-    char reboot_cmd[] = "reboot";
-    char switchc_cmd[] = "switchc";
-    char * colours_msg = (char *) "\nColours! 0x00 to 0xFF, with the letter A:\n";
-    char * chars_msg = (char *) "\nCharacters! 0x00 to 0xFF:\n";
-    char * shdwn_msg = (char *) "\nPress any key to confirm shutdown, bye-nee~~\n";
-    char * reboot_msg = (char *) "\nPress any key to confirm reboot, see ya'~~\n";
-    char buffer[256];
-
-    while (true) {
-        kprint(arrows);
-        i = 0;
-        while (i < 256) {
-            key = get_key();
-            if (*key.value == '\n') {
-                buffer[i] = '\0';
-                break;
-            } else if (*key.value == '\b') {
-                if (i > 0) {
-                    kprint(key.value);
-                    i--;
-                } else {
-                    /* Do nothing */
-                }
-            } else {
-                kprint(key.value);
-                buffer[i] = *key.value;
-                i++;
-            }
-        }
-
-        /* Commands: `hello`, `colours` and `shutdown` */
-        if (std::strcmp(buffer, hello_cmd) == 0) {
-            kprint(msg, 0x02);
-        } else if (std::strcmp(buffer, colours_cmd) == 0) {
-            kprint(colours_msg);
-            for (i = 0; i < 0x100; i++) {
-                kprint((char *)"A", i);
-            }
-        } else if (std::strcmp(buffer, chars_cmd) == 0) {
-            kprint(chars_msg);
-            for (i = 0; i < 0x100; i++) {
-                char character[2];
-                character[0] = i;
-                character[1] = '\0';
-                kprint(&character[0], 0x0e);
-            }
-        } else if (std::strcmp(buffer, shdwn_cmd) == 0) {
-            kprint(shdwn_msg);
-            get_key();
-            apm::shutdown();
-            return;
-        } else if (std::strcmp(buffer, reboot_cmd) == 0) {
-            kprint(reboot_msg);
-            get_key();
-            apm::hardware_reset();
-            return;
-        } else if (std::strcmp(buffer, switchc_cmd) == 0) {
-            if (video_color_mode == 0) {
-                itr::scrn_toggle_blink();
-                video_color_mode = 1;
-            } else {
-                itr::scrn_toggle_intensity();
-                video_color_mode = 0;
-            }
-        } else {
-            kprint(no_cmd, 0x04);
-        }
-    }
+  helloapp::hello();
+  shellapp::main(0, no_args);
 }

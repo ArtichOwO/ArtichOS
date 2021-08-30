@@ -1,6 +1,6 @@
 #include "screen.h"
 #include "port.h"
-#include "../stdlib/stdlib.h"
+#include <mem.h>
 
 char * detectvideotype() {
     char * video_memory_addr;

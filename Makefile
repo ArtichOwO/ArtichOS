@@ -9,18 +9,18 @@ CAT = cat
 
 CFLAGS = -ffreestanding -c -g -m16 -nostdlib -nostdinc -fno-builtin \
 				 -fno-stack-protector -nostartfiles -nodefaultlibs \
-		 		 -Wall -Wextra
+		 		 -Wall -Wextra -I stdlib
 LDFLAGS = -Ttext 0x1000
 
 QEMU = qemu-system-i386
 
-src_dir_1 = $(wildcard */)
+src_dir_1 = $(wildcard */*)
 src_dir = $(filter-out $(OUTPUT_DIR), $(src_dir_1))
 
-kernel_src = $(wildcard kernel/*.cpp drivers/*.cpp stdlib/*.cpp)
-kernel_src += $(wildcard kernel/*.c drivers/*.c stdlib/*.c)
-kernel_src += $(wildcard kernel/*.asm drivers/*.asm stdlib/*.asm)
-kernel_head = $(wildcard kernel/*.h drivers/*.h stdlib/*.h)
+kernel_src = $(wildcard kernel/*.cpp drivers/*.cpp stdlib/*.cpp apps/*.cpp apps/*/*.cpp)
+kernel_src += $(wildcard kernel/*.c drivers/*.c stdlib/*.c apps/*.c apps/*/*.c)
+kernel_src += $(wildcard kernel/*.asm drivers/*.asm stdlib/*.asm apps/*.asm apps/*/*.asm)
+kernel_head = $(wildcard kernel/*.h drivers/*.h stdlib/*.h apps/*.h apps/*/*.h)
 
 kernel_obj_1 = $(kernel_src:.cpp=.o)
 kernel_obj_2 = $(kernel_obj_1:.c=.o)
