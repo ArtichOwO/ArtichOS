@@ -68,7 +68,7 @@ run: ArtichOS.bin
 	$(QEMU) -drive format=raw,file=$(OUTPUT_DIR)$<,index=0,if=floppy
 
 run_debug: ArtichOS.bin kernel.elf
-	$(QEMU) -s -drive format=raw,file=$(OUTPUT_DIR)$<,index=0,if=floppy &
+	$(QEMU) -s -drive format=raw,file=$(OUTPUT_DIR)$<,index=0,if=floppy -serial file:output/serial.log &
 	${GDB} -ex "target remote localhost:1234" -ex "symbol-file $(OUTPUT_DIR)kernel.elf"
 
 prebuild:
