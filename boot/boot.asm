@@ -123,7 +123,7 @@ print_hex:
     jmp hex_loop
   end:
     ; prepare the parameter and call the function
-    ; remember that print receives parameters in 'bx'
+    ; remember that print receives parameters in 'si'
     mov si, HEX_OUT
     call print
     popa
