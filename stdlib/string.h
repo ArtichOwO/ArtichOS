@@ -1,5 +1,5 @@
-#ifndef STD_STRINGS_H
-#define STD_STRINGS_H
+#ifndef STD_STRING_H
+#define STD_STRING_H
 
 void itoa(int n, char str[]);
 void itox(unsigned int i, char * str);
