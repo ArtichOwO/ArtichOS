@@ -8,8 +8,8 @@ LD  = i386-elf-ld
 CAT = cat
 
 CFLAGS = -ffreestanding -c -g -m16 -nostdlib -nostdinc -fno-builtin \
-				 -fno-stack-protector -nostartfiles -nodefaultlibs \
-		 		 -Wall -Wextra -I stdlib
+		 -fno-stack-protector -nostartfiles -nodefaultlibs \
+		 -Wall -Wextra -I stdlib
 LDFLAGS = -Ttext 0x1000
 
 QEMU = qemu-system-i386
