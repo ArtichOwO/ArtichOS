@@ -42,7 +42,7 @@ int main(int argc, char * argv[]) {
     exit_code = apps.run_app(buffer);
     if (exit_code != 127) {
     	kprint(exit_message);
-    	std::itoa(exit_code, exit_code_a);
+      itoa(exit_code, exit_code_a);
       kprint(exit_code_a);
       kprint((char *)"\n");
     } else {

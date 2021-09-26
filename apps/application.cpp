@@ -9,7 +9,7 @@ namespace std {
 	int Apps_Handler::run_app(char command[]) {
 		this->app_id = -1;
 		for (this->i = 0; this->i < APPS_QUANTITY; this->i++) {
-			if (std::strcmp(command, this->apps_cmd[this->i]) == 0) {
+			if (strcmp(command, this->apps_cmd[this->i]) == 0) {
 				this->app_id = this->i;
 				break;
 			}
