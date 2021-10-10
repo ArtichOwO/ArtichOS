@@ -102,8 +102,8 @@ shutdown:
 
 hardware_reset:
 	xor ax, ax
-  mov ds, ax
-  mov ax, 0x1234
+    mov ds, ax
+    mov ax, 0x1234
 	mov [0x0472], ax
 	jmp 0xFFFF:0000
 
