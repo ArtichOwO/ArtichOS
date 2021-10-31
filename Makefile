@@ -19,11 +19,17 @@ ArtichOS: $(obj)
 	@echo LD $@
 	@$(LD) $^ -o $(BUILD_DIR)$@ $(LD_FLAGS)
 
-.PHONY: clean
+.PHONY: clean run all
 
 clean:
 	@rm -Rf $(BUILD_DIR)
 	@echo CLEAN
+
+run: ArtichOS
+	qemu-system-i386 -drive format=raw,file=$(BUILD_DIR)$<,index=0,if=floppy \
+	                 -monitor stdio
+
+all: clean run
 
 
 $(BUILD_DIR)%.o: %.c
