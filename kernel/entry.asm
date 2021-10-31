@@ -17,4 +17,4 @@ main:
 
 section .data
 
-KernelMsg db "It worked!", 0
+KernelMsg db "Kernel loaded!", 0
