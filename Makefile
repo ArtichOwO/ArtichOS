@@ -29,7 +29,7 @@ clean:
 $(BUILD_DIR)%.o: %.c
 	@mkdir -p $(dir $@)
 	@echo GCC $@
-	@$(GCC) $< -o $@
+	@$(GCC) $< -o $@ $(CFLAGS)
 
 $(BUILD_DIR)%.o: %.asm
 	@mkdir -p $(dir $@)
