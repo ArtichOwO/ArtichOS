@@ -7,12 +7,13 @@ LD = i386-elf-ld
 CFLAGS = -ffreestanding \
  		 -c -m16 -nostdlib -nostdinc \
          -nostartfiles -nodefaultlibs \
-         -Wall -Wextra
+         -Wall -Wextra -I libc
 NASM_FLAGS = -Wx
 LD_FLAGS = -T main.ld --oformat binary
 
 include boot/Makefile
 include kernel/Makefile
+include libc/Makefile
 
 ArtichOS: $(obj)
 	@echo LD $@
