@@ -10,9 +10,10 @@ SECTIONS {
   }
 
   . = 0x500;
-  .text : AT(__BOOT_END) {
+  .kernel : AT(__BOOT_END) {
     main = .;
     *(.text);
     *(.data);
+    *(.rodata);
   }
 }
