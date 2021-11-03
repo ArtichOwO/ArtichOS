@@ -14,3 +14,4 @@ Coming soon too!
 
 - https://wiki.osdev.org/ which helped me a lot (+ string part of libc)
 - heavy inspiration from https://github.com/cfenollosa/os-tutorial (I started with this tutorial!)
+- some links specified in files
