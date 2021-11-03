@@ -19,9 +19,9 @@ uint8_t * get_video_address(enum video_type videoType) {
     }
 }
 
-static int get_offset(int col, int row) { return 2 * (row * MAX_COLS + col); }
-static int get_offset_row(int offset) { return offset / (2 * MAX_COLS); }
-//static int16_t get_offset_col(int16_t offset) { return (offset - (get_offset_row(offset)*2*MAX_COLS))/2; }
+int get_offset(int col, int row) { return 2 * (row * MAX_COLS + col); }
+int get_offset_row(int offset) { return offset / (2 * MAX_COLS); }
+int get_offset_col(int offset) { return (offset - (get_offset_row(offset)*2*MAX_COLS))/2; }
 
 void kprint(char * str, uint8_t attr) {
     for (char c = *str; c; c=*++str) {
