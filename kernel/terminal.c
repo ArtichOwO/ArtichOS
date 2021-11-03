@@ -99,3 +99,10 @@ void set_cursor_offset(int offset) {
     port_byte_out(REG_SCREEN_CTRL, 15);
     port_byte_out(REG_SCREEN_DATA, (offset & 0xff));
 }
+
+void set_cursor_shape(uint16_t cursor_shape) {
+    port_byte_out(REG_SCREEN_CTRL, 0x0A);
+    port_byte_out(REG_SCREEN_DATA, (cursor_shape >> 8));
+    port_byte_out(REG_SCREEN_CTRL, 0x0B);
+    port_byte_out(REG_SCREEN_DATA, (cursor_shape & 0xff));
+};

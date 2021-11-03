@@ -23,5 +23,6 @@ void print_char(char c, uint8_t attr, int row, int col);
 void clear_terminal(char c, uint8_t attr);
 int get_cursor_offset();
 void set_cursor_offset(int offset);
+void set_cursor_shape(uint16_t cursor_shape);
 
 #endif // KERNEL_TERMINAL_H
