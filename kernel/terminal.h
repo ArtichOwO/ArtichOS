@@ -20,6 +20,7 @@ enum video_type get_bios_area_video_type();
 uint8_t * get_video_address(enum video_type videoType);
 void kprint(char * str, uint8_t attr);
 void print_char(char c, uint8_t attr, int row, int col);
+void clear_terminal(char c, uint8_t attr);
 int get_cursor_offset();
 void set_cursor_offset(int offset);
 

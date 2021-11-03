@@ -68,6 +68,17 @@ void print_char(char c, uint8_t attr, int row, int col) {
     set_cursor_offset(offset);
 }
 
+void clear_terminal(char c, uint8_t attr) {
+    uint8_t * video_memory_addr = get_video_address(get_bios_area_video_type());
+    int offset = 0;
+    for (unsigned int i = 0; i < MAX_COLS*MAX_ROWS*2; ++i) {
+        video_memory_addr[offset] = c;
+        video_memory_addr[offset+1] = attr;
+        offset += 2;
+    }
+    set_cursor_offset(0);
+}
+
 int get_cursor_offset() {
     /* Use the VGA ports to get the current cursor position
      * 1. Ask for high byte of the cursor offset (data 14)
