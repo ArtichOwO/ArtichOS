@@ -8,3 +8,9 @@ obj_string += $(addprefix $(BUILD_DIR)libc/string/, \
 )
 
 obj += $(obj_string)
+
+obj_stdlib += $(addprefix $(BUILD_DIR)libc/stdlib/, \
+	itoa.o \
+)
+
+obj += $(obj_stdlib)
