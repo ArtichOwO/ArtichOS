@@ -1,5 +1,5 @@
 kernel_offset equ 0x500
-sector_quantity equ 51
+sector_quantity equ 59
 
 global _start
 global print
@@ -19,7 +19,7 @@ _start:
   mov ds, ax
 
   mov ss, ax
-  mov ax, 0x7c00
+  ;mov ax, 0x7c00
   mov sp, ax
 
   cld
