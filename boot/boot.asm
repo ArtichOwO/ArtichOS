@@ -26,7 +26,7 @@ _start:
 
   mov al, 03h
   mov ah, 0
-  ;int 0x10
+  int 0x10
 
   mov si, fstmsg
   call print
