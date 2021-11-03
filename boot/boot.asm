@@ -89,6 +89,7 @@ error:
 	ret
 
 print:
+  pusha
 	mov bp, sp
 	cont:
 	lodsb
@@ -100,6 +101,7 @@ print:
 	jmp cont
 	dne:
 	mov sp, bp
+	popa
 	ret
 
 ; HEX PRINTING
