@@ -15,5 +15,6 @@ SECTIONS {
     *(.text);
     *(.data);
     *(.rodata);
+    *(.bss);
   }
 }
