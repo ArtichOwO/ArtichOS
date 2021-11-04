@@ -3,4 +3,5 @@ obj += $(addprefix $(BUILD_DIR)kernel/, \
 	kernel.o \
 	terminal.o \
 	port.o \
+	serial.o \
 )

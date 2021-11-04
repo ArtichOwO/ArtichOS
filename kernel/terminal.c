@@ -1,6 +1,7 @@
 #include "terminal.h"
 #include "kernel.h"
 #include "port.h"
+#include "serial.h"
 #include <string.h>
 
 enum video_type get_bios_area_video_type() {
@@ -26,6 +27,10 @@ int get_offset_col(int offset) { return (offset - (get_offset_row(offset)*2*MAX_
 void kprint(char * str, uint8_t attr) {
     for (char c = *str; c; c=*++str) {
         print_char(c, attr, -1, -1);
+        if (c == '\n') {
+            write_serial('\r');
+        }
+        write_serial(c);
     }
 }
 
