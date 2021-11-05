@@ -14,6 +14,8 @@ section .boot.text
 _start:
   mov [boot_drive], dl ; BIOS place drive into dl when loading boot sector
 
+  cli
+
   xor ax, ax
   mov es, ax
   mov ds, ax
@@ -22,6 +24,7 @@ _start:
   ;mov ax, 0x7c00
   mov sp, ax
 
+  sti
   cld
 
   mov al, 03h
