@@ -16,5 +16,7 @@ SECTIONS {
     *(.data);
     *(.rodata);
     *(.bss);
+    . = 0x7700;
+    __KERNEL_END = .;
   }
 }
