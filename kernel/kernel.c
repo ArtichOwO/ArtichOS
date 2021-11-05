@@ -1,10 +1,14 @@
 #include "kernel.h"
 #include "terminal.h"
 #include "serial.h"
+#include <string.h>
 
 void kernel_main() {
-    kprint("\nHello, World! on ArtichOS", 0x0D);
     init_serial();
+
+    char * WelcomeMsg = "Hello, World! on ArtichOS \x08";
+    set_cursor_offset(get_offset((MAX_COLS-strlen(WelcomeMsg))/2, (MAX_ROWS/2)-1));
+    kprint(WelcomeMsg, 0x0D);
 }
 
 uint16_t detect_bios_area_hardware() {
