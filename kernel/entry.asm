@@ -2,9 +2,7 @@
 
 global main
 
-[extern print]
-[extern print_hex]
-[extern kernel_main]
+extern print, print_hex, kernel_main
 
 section .text
 

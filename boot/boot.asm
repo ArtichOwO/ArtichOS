@@ -5,7 +5,7 @@ global _start
 global print
 global print_hex
 
-[extern main]
+extern main
 
 [bits 16]
 
