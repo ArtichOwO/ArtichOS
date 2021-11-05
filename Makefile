@@ -27,7 +27,7 @@ clean:
 
 run: ArtichOS
 	qemu-system-i386 -drive format=raw,file=$(BUILD_DIR)$<,index=0,if=floppy \
-	                 -monitor stdio
+	                 -monitor stdio -serial file:output/serial.log
 
 all: clean run
 
