@@ -114,7 +114,7 @@ void setupIVT() {
     __asm__ __volatile__ ("cli");
 
     for (unsigned int i = 0; i < 5; ++i) {
-        if (i != 1) {
+        if (functions[i] != (void *)0) {
             IVTptr[i].function = (uint16_t)functions[i];
             IVTptr[i].segment = 0x0000;
         }
