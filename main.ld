@@ -2,7 +2,7 @@ ENTRY(_start);
 
 MEMORY {
   bootloader (rwx) : ORIGIN = 0x7C00, LENGTH = 0x200
-  kernel (rwx) : ORIGIN = 0x500, LENGTH = 0x7C00 - 0x500
+  kernel (rwx) : ORIGIN = 0x500, LENGTH = ORIGIN(bootloader) - ORIGIN(kernel)
 }
 
 SECTIONS {
