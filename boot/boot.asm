@@ -143,6 +143,7 @@ print_hex:
     popa
     ret
 
+section .boot.data
 
 ; Data
 fstmsg db "Booting successful...",10,13,"Press any key to load disk!",10,13,10,13,0

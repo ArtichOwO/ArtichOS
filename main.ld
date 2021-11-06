@@ -1,22 +1,25 @@
 ENTRY(_start);
 
+MEMORY {
+  bootloader (rwx) : ORIGIN = 0x7C00, LENGTH = 0x200
+  kernel (rwx) : ORIGIN = 0x500, LENGTH = 0x7C00 - 0x500
+}
+
 SECTIONS {
-  . = 0x7C00;
-  .boot.text : {
+  .boot : {
     *(.boot.text);
+    *(.boot.data);
     . = 0x1FE;
     SHORT(0xAA55);
     __BOOT_END = .;
-  }
+  } > bootloader
 
-  . = 0x500;
   .kernel : AT(__BOOT_END) {
     main = .;
     *(.text);
     *(.data);
     *(.rodata);
     *(.bss);
-    . = 0x7700;
     __KERNEL_END = .;
-  }
+  } > kernel
 }
