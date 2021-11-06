@@ -1,10 +1,7 @@
 kernel_offset equ 0x500
 sector_quantity equ 59
 
-global _start
-global print
-global print_hex
-
+global _start, print, print_hex
 extern main
 
 [bits 16]
