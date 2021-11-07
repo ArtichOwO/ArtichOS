@@ -5,7 +5,7 @@ NASM = nasm
 LD = x86_64-elf-ld
 
 CFLAGS = -ffreestanding \
- 		 -c -m16 -nostdlib -nostdinc \
+         -c -m16 -nostdlib -nostdinc \
          -nostartfiles -nodefaultlibs \
          -Wall -Wextra -I libc
 NASM_FLAGS = -Wx
