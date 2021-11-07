@@ -1,15 +1,15 @@
 BUILD_DIR = output/
-GCC = i386-elf-gcc
-GXX = i386-elf-g++
+CC = x86_64-elf-gcc
+CXX = x86_64-elf-g++
 NASM = nasm
-LD = i386-elf-ld
+LD = x86_64-elf-ld
 
 CFLAGS = -ffreestanding \
  		 -c -m16 -nostdlib -nostdinc \
          -nostartfiles -nodefaultlibs \
          -Wall -Wextra -I libc
 NASM_FLAGS = -Wx
-LD_FLAGS = -T main.ld --oformat binary
+LD_FLAGS = -T main.ld --oformat binary -m elf_i386
 
 include boot/Makefile
 include kernel/Makefile
@@ -34,8 +34,8 @@ all: clean run
 
 $(BUILD_DIR)%.o: %.c
 	@mkdir -p $(dir $@)
-	@echo GCC $@
-	@$(GCC) $< -o $@ $(CFLAGS)
+	@echo CC $@
+	@$(CC) $< -o $@ $(CFLAGS)
 
 $(BUILD_DIR)%.o: %.asm
 	@mkdir -p $(dir $@)
