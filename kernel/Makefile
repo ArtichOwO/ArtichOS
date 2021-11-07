@@ -6,4 +6,5 @@ obj += $(addprefix $(BUILD_DIR)kernel/, \
 	serial.o \
 	ivt.o \
 	syscalls.o \
+	disk.o \
 )

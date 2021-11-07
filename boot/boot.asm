@@ -1,7 +1,7 @@
 kernel_offset equ 0x500
 sector_quantity equ 59
 
-global _start, print, print_hex
+global _start, print, print_hex, boot_drive
 extern main
 
 [bits 16]
