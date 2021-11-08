@@ -6,7 +6,7 @@
 
 extern uint8_t boot_drive;
 
-struct CHSDiskAddressPacket {
+typedef struct {
     uint8_t Drive;
     uint8_t SectorCount;
     uint8_t Cylinder;
@@ -14,8 +14,8 @@ struct CHSDiskAddressPacket {
     uint8_t Sector;
     uint16_t BufferSegment;
     uint16_t BufferOffset;
-};
+} CHSDiskAddressPacket;
 
-bool rw_disk(struct CHSDiskAddressPacket * packet, bool write);
+bool rw_disk(CHSDiskAddressPacket * packet, bool write);
 
 #endif // KERNEL_DISK_H

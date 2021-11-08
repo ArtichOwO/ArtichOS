@@ -4,7 +4,7 @@
 
 #include "disk.h"
 
-bool rw_disk(struct CHSDiskAddressPacket * packet, bool write) {
+bool rw_disk(CHSDiskAddressPacket * packet, bool write) {
     bool success;
 
     uint16_t AX = packet->SectorCount;
