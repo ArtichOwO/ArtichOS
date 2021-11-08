@@ -77,10 +77,12 @@ disk_error:
 
 section .boot.data
 
-; Data
+boot_drive db 0x00
+
+section .boot.rodata
+
 fstmsg db "Booting successful...",10,13,"Press any key to load disk!",10,13,10,13,0
 drivemsg db "Drive : ",0
 ldamsg db "Loading kernel into RAM...",10,13,0
 errmsg db "Error loading sector, error code: ",0
 newline db 10,13,0
-boot_drive db 0x00

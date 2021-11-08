@@ -9,6 +9,7 @@ SECTIONS {
   .boot : {
     *(.boot.text);
     *(.boot.data);
+    *(.boot.rodata);
     . = 0x1FE;
     SHORT(0xAA55);
     __BOOT_END = .;
