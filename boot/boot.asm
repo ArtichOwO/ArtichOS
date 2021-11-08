@@ -59,27 +59,11 @@ load_disk:
   jc disk_error
 
   cmp al, sector_quantity
-  jne error
+  jne disk_error
 
   jmp main
 
 disk_error:
-  call error ; Print error msg
-  mov si, retry
-  call print
-  mov dl, [boot_drive]
-  cmp dl, 0x00 ; Change boot_drive to 0x80 if already 0x00, else change to 0x00
-  je change_to_80h
-  mov dl, 0x00
-  mov [boot_drive], dl
-  jmp disk_done
-  change_to_80h:
-  mov dl, 0x80
-  mov [boot_drive], dl
-  disk_done:
-  jmp print_drive ; Retry loading disk
-
-error:
 	mov si, errmsg
 	call print
 	mov dx, ax
@@ -98,6 +82,5 @@ fstmsg db "Booting successful...",10,13,"Press any key to load disk!",10,13,10,1
 drivemsg db "Drive : ",0
 ldamsg db "Loading kernel into RAM...",10,13,0
 errmsg db "Error loading sector, error code: ",0
-retry db "Retrying using different drive...",10,13,0
 newline db 10,13,0
-boot_drive db 0x80 ; Will change if wrong
+boot_drive db 0x00
