@@ -21,66 +21,51 @@ static void error_screen(char *message) {
     set_cursor_shape(0x2607);
     clear_terminal(' ', ERROR_SCREEN_COLOR);
 
-    set_cursor_offset(get_offset(4, 5));
-    kprint(message, ERROR_SCREEN_COLOR);
-    set_cursor_offset(get_offset(4, 7));
-    kprint("Your PC has encountered a fatal error, \n"
-           "    to continue : \n\n"
-           "    Try to reboot your computer, \n"
-           "    if the error persists \n"
-           "    try to reinstall ArtichOS.", ERROR_SCREEN_COLOR);
+    kprint_at(message, ERROR_SCREEN_COLOR, 5, 4);
+    kprint_at("Your PC has encountered a fatal error, \n"
+              "    to continue : \n\n"
+              "    Try to reboot your computer, \n"
+              "    if the error persists \n"
+              "    try to reinstall ArtichOS.", ERROR_SCREEN_COLOR, 7, 4);
 
-
-    set_cursor_offset(get_offset(50, 7));
     __asm__("mov %%ax, %0" : "=m" (reg_content));
-    kprint("AX=0x", ERROR_SCREEN_COLOR);
+    kprint_at("AX=0x", ERROR_SCREEN_COLOR, 7, 50);
     kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
 
-    set_cursor_offset(get_offset(50, 8));
     __asm__("mov %%bx, %0" : "=m" (reg_content));
-    kprint("BX=0x", ERROR_SCREEN_COLOR);
+    kprint_at("BX=0x", ERROR_SCREEN_COLOR, 8, 50);
     kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
 
-    set_cursor_offset(get_offset(65, 7));
     __asm__("mov %%cx, %0" : "=m" (reg_content));
-    kprint("CX=0x", ERROR_SCREEN_COLOR);
+    kprint_at("CX=0x", ERROR_SCREEN_COLOR, 7, 65);
     kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
 
-    set_cursor_offset(get_offset(65, 8));
     __asm__("mov %%dx, %0" : "=m" (reg_content));
-    kprint("DX=0x", ERROR_SCREEN_COLOR);
+    kprint_at("DX=0x", ERROR_SCREEN_COLOR, 8, 65);
     kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
 
-
-    set_cursor_offset(get_offset(50, 10));
     __asm__("mov %%sp, %0" : "=m" (reg_content));
-    kprint("SP=0x", ERROR_SCREEN_COLOR);
+    kprint_at("SP=0x", ERROR_SCREEN_COLOR, 10, 50);
     kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
 
-    set_cursor_offset(get_offset(50, 11));
     __asm__("mov %%ss, %0" : "=m" (reg_content));
-    kprint("SS=0x", ERROR_SCREEN_COLOR);
+    kprint_at("SS=0x", ERROR_SCREEN_COLOR, 11, 50);
     kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
 
-    set_cursor_offset(get_offset(65, 10));
     __asm__("mov %%cs, %0" : "=m" (reg_content));
-    kprint("CS=0x", ERROR_SCREEN_COLOR);
+    kprint_at("CS=0x", ERROR_SCREEN_COLOR, 10, 65);
     kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
 
-    set_cursor_offset(get_offset(65, 11));
     __asm__("mov %%ds, %0" : "=m" (reg_content));
-    kprint("DS=0x", ERROR_SCREEN_COLOR);
+    kprint_at("DS=0x", ERROR_SCREEN_COLOR, 11, 65);
     kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
 
-
-    set_cursor_offset(get_offset(50, 13));
     __asm__("mov %%si, %0" : "=m" (reg_content));
-    kprint("SI=0x", ERROR_SCREEN_COLOR);
+    kprint_at("SI=0x", ERROR_SCREEN_COLOR, 13, 50);
     kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
 
-    set_cursor_offset(get_offset(65, 13));
     __asm__("mov %%di, %0" : "=m" (reg_content));
-    kprint("DI=0x", ERROR_SCREEN_COLOR);
+    kprint_at("DI=0x", ERROR_SCREEN_COLOR, 13, 65);
     kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
 
     __asm__("hlt");
