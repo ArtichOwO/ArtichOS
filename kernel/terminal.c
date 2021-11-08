@@ -25,6 +25,13 @@ int get_offset_row(int offset) { return offset / (2 * MAX_COLS); }
 int get_offset_col(int offset) { return (offset - (get_offset_row(offset)*2*MAX_COLS))/2; }
 
 void kprint(char * str, uint8_t attr) {
+    kprint_at(str, attr, -1, -1);
+}
+
+void kprint_at(char * str, uint8_t attr, int row, int col) {
+    if (row >= 0 && col >= 0)
+        set_cursor_offset(get_offset(col, row));
+
     for (char c = *str; c; c=*++str) {
         print_char(c, attr, -1, -1);
         if (c == '\n') {
