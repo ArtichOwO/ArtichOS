@@ -82,9 +82,11 @@ int128handler:
     push word [Int128Offset]
     iret
 
-section .data
+section .rodata
 
 ErrorMsg db 0xA, "Syscall not found",0
+
+section .data
 
 Int128Offset dw 0x0000
 Int128Segment dw 0x0000
