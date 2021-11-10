@@ -9,10 +9,10 @@
 
 typedef void (*ivt_function)(void);
 
-struct IVTentry {
+typedef struct {
     ivt_function function;
     uint16_t segment;
-};
+} IVTentry;
 
 static void error_screen(char * message) {
     //port_byte_out(0x10, 0b00000111);
@@ -81,7 +81,7 @@ static void IVTthree(void) { error_screen("Breakpoint :c\n"); }
 static void IVTfour(void) { error_screen("Overflow >:0\n"); }
 
 void setupIVT(void) {
-    volatile struct IVTentry * IVTptr = (struct IVTentry *) 0x0000;
+    volatile IVTentry * IVTptr = (IVTentry *) 0x0000;
 
     /*
      * https://www.tutorialspoint.com/microprocessor/microprocessor_8086_interrupts.htm
@@ -92,11 +92,11 @@ void setupIVT(void) {
      */
 
     ivt_function functions[] = {
-        &IVTzero,
+        IVTzero,
         0, // Debug
-        &IVTtwo,
-        &IVTthree,
-        &IVTfour,
+        IVTtwo,
+        IVTthree,
+        IVTfour,
     };
 
     __asm__ __volatile__ ("cli");
