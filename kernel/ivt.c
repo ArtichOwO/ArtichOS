@@ -7,8 +7,10 @@
 
 #define ERROR_SCREEN_COLOR 0x9A
 
+typedef void (*ivt_function)(void);
+
 struct IVTentry {
-    uint16_t function;
+    ivt_function function;
     uint16_t segment;
 };
 
@@ -89,19 +91,19 @@ void setupIVT() {
      * and interrupts from 32 to Type 255 are available for hardware and software interrupts.
      */
 
-    void * functions[] = {
-        (void *)&IVTzero,
-        (void *)0, // Debug
-        (void *)&IVTtwo,
-        (void *)&IVTthree,
-        (void *)&IVTfour,
+    ivt_function functions[] = {
+        &IVTzero,
+        0, // Debug
+        &IVTtwo,
+        &IVTthree,
+        &IVTfour,
     };
 
     __asm__ __volatile__ ("cli");
 
     for (unsigned int i = 0; i < 5; ++i) {
         if (functions[i] != (void *)0) {
-            IVTptr[i].function = (uint16_t)functions[i];
+            IVTptr[i].function = functions[i];
             IVTptr[i].segment = 0x0000;
         }
     }
