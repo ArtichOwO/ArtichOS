@@ -7,7 +7,8 @@ LD = x86_64-elf-ld
 CFLAGS = -ffreestanding \
          -c -m16 -nostdlib -nostdinc \
          -nostartfiles -nodefaultlibs \
-         -Wall -Wextra -I libc
+         -Wall -Wextra -Wpedantic \
+         -I libc
 NASM_FLAGS = -Wx
 LD_FLAGS = -T main.ld --oformat binary -m elf_i386
 
