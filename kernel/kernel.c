@@ -12,8 +12,7 @@ void kernel_main(void) {
     setup128();
 
     char * WelcomeMsg = "Hello, World! on ArtichOS \x08";
-    set_cursor_offset(get_offset((MAX_COLS-strlen(WelcomeMsg))/2, (MAX_ROWS/2)-1));
-    kprint(WelcomeMsg, 0x0D);
+    kprint_at(WelcomeMsg, 0x0D, (MAX_ROWS/2)-1, (MAX_COLS-strlen(WelcomeMsg))/2);
 }
 
 uint16_t detect_bios_area_hardware(void) {
