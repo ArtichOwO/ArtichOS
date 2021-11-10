@@ -7,7 +7,7 @@
 
 void kernel_main(void) {
     init_serial();
-    //remapIRQ();
+    remapIRQ();
     setupIVT();
     setup128();
 
