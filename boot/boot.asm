@@ -53,8 +53,7 @@ load_disk:
   mov cx, 0002h           ; CH=Cylinder number 0, CL=sector to start reading = 2
                           ;    Sector 2 = sector right after boot sector
   xor dh, dh              ; DH=head number = 0
-  mov bx, kernel_offset   ; ES:BX = memory to read into. ES=0, BX=kernel_offset right
-                          ;    after the first 512 bytes read by BIOS
+  mov bx, kernel_offset   ; ES:BX = memory to read into. ES=0, BX=kernel_offset
   int 13h                 ; Int 13h/AH=02 disk read
   jc disk_error
 
