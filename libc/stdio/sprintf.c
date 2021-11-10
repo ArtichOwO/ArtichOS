@@ -9,7 +9,7 @@
 
 int sprintf(char * buffer, const char * format, ...) {
     va_list parametersInfos;
-    va_start( parametersInfos, format );
+    va_start(parametersInfos, format);
 
     char currentChar;
     int currentIndex = 0;
@@ -56,7 +56,7 @@ int sprintf(char * buffer, const char * format, ...) {
             }
                 break;
             default:
-                (void)va_arg( parametersInfos, const char * );
+                (void)va_arg(parametersInfos, const char *);
                 buffer[currentIndex++] = '\x13';
         }
     }
