@@ -4,7 +4,7 @@
 #include "serial.h"
 #include <string.h>
 
-enum video_type get_bios_area_video_type() {
+enum video_type get_bios_area_video_type(void) {
     return (enum video_type) (detect_bios_area_hardware() & 0x30);
 }
 
@@ -91,7 +91,7 @@ void clear_terminal(char c, uint8_t attr) {
     set_cursor_offset(0);
 }
 
-int get_cursor_offset() {
+int get_cursor_offset(void) {
     /* Use the VGA ports to get the current cursor position
      * 1. Ask for high byte of the cursor offset (data 14)
      * 2. Ask for low byte (data 15)

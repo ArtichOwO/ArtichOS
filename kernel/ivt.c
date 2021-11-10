@@ -74,13 +74,13 @@ static void error_screen(char *message) {
     __asm__("hlt");
 }
 
-static void IVTzero() { error_screen("Division by zero x(\n"); }
+static void IVTzero(void) { error_screen("Division by zero x(\n"); }
 /* IVTone -> reserved */
-static void IVTtwo() { error_screen("NMI T^T\n"); }
-static void IVTthree() { error_screen("Breakpoint :c\n"); }
-static void IVTfour() { error_screen("Overflow >:0\n"); }
+static void IVTtwo(void) { error_screen("NMI T^T\n"); }
+static void IVTthree(void) { error_screen("Breakpoint :c\n"); }
+static void IVTfour(void) { error_screen("Overflow >:0\n"); }
 
-void setupIVT() {
+void setupIVT(void) {
     volatile struct IVTentry * IVTptr = (struct IVTentry *) 0x0000;
 
     /*
@@ -115,7 +115,7 @@ void setupIVT() {
  * https://stackoverflow.com/questions/282983/setting-up-irq-mapping
  */
 
-void remapIRQ() {
+void remapIRQ(void) {
     port_byte_out(0x20, 0x11);
     port_byte_out(0xA0, 0x11);
     port_byte_out(0x21, 0x20);

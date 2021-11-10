@@ -16,7 +16,7 @@ enum video_type {
     VIDEO_TYPE_MONOCHROME = 0x30,
 };
 
-enum video_type get_bios_area_video_type();
+enum video_type get_bios_area_video_type(void);
 uint8_t * get_video_address(enum video_type videoType);
 void kprint(char * str, uint8_t attr);
 void kprint_at(char * str, uint8_t attr, int row, int col);
@@ -25,7 +25,7 @@ void clear_terminal(char c, uint8_t attr);
 int get_offset(int col, int row);
 int get_offset_row(int offset);
 int get_offset_col(int offset);
-int get_cursor_offset();
+int get_cursor_offset(void);
 void set_cursor_offset(int offset);
 void set_cursor_shape(uint16_t cursor_shape);
 

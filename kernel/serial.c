@@ -5,7 +5,7 @@
  * https://wiki.osdev.org/Serial_Ports
  */
 
-int init_serial() {
+int init_serial(void) {
    port_byte_out(PORT + 1, 0x00);    // Disable all interrupts
    port_byte_out(PORT + 3, 0x80);    // Enable DLAB (set baud rate divisor)
    port_byte_out(PORT + 0, 0x03);    // Set divisor to 3 (lo byte) 38400 baud
@@ -27,7 +27,7 @@ int init_serial() {
    return 0;
 }
 
-int is_transmit_empty() {
+int is_transmit_empty(void) {
    return port_byte_in(PORT + 5) & 0x20;
 }
 
@@ -43,11 +43,11 @@ void write_serial_string(char * str) {
    }
 }
 
-int serial_received() {
+int serial_received(void) {
     return port_byte_in(PORT + 5) & 1;
 }
 
-char read_serial() {
+char read_serial(void) {
     while (serial_received() == 0);
 
     return port_byte_in(PORT);

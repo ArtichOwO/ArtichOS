@@ -5,7 +5,7 @@
 #include "syscalls.h"
 #include <string.h>
 
-void kernel_main() {
+void kernel_main(void) {
     init_serial();
     //remapIRQ();
     setupIVT();
@@ -16,7 +16,7 @@ void kernel_main() {
     kprint(WelcomeMsg, 0x0D);
 }
 
-uint16_t detect_bios_area_hardware() {
+uint16_t detect_bios_area_hardware(void) {
     const uint16_t * bda_detected_hardware_ptr = (const uint16_t *) 0x410;
     return *bda_detected_hardware_ptr;
 }

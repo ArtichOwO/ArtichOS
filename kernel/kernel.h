@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-uint16_t detect_bios_area_hardware();
+uint16_t detect_bios_area_hardware(void);
 
 #endif // _KERNEL_H

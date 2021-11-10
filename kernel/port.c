@@ -28,6 +28,6 @@ void port_word_out(uint16_t port, uint16_t data) {
     : "a" (data), "d" (port));
 }
 
-void io_wait() {
+void io_wait(void) {
     port_byte_out(0x80, 0);
 }
