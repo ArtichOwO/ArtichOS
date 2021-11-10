@@ -3,6 +3,7 @@
 #include "port.h"
 #include <stdint.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #define ERROR_SCREEN_COLOR 0x9A
 
@@ -15,7 +16,7 @@ static void error_screen(char *message) {
     //port_byte_out(0x10, 0b00000111);
     __asm__("mov $0x1003, %ax; int $0x10");
 
-    char reg_str[6] = {0};
+    char string[80];
     uint16_t reg_content;
 
     set_cursor_shape(0x2607);
@@ -29,44 +30,44 @@ static void error_screen(char *message) {
               "    try to reinstall ArtichOS.", ERROR_SCREEN_COLOR, 7, 4);
 
     __asm__("mov %%ax, %0" : "=m" (reg_content));
-    kprint_at("AX=0x", ERROR_SCREEN_COLOR, 7, 50);
-    kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
+    sprintf(string, "AX=0x%x", reg_content);
+    kprint_at(string, ERROR_SCREEN_COLOR, 7, 50);
 
     __asm__("mov %%bx, %0" : "=m" (reg_content));
-    kprint_at("BX=0x", ERROR_SCREEN_COLOR, 8, 50);
-    kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
+    sprintf(string, "BX=0x%x", reg_content);
+    kprint_at(string, ERROR_SCREEN_COLOR, 8, 50);
 
     __asm__("mov %%cx, %0" : "=m" (reg_content));
-    kprint_at("CX=0x", ERROR_SCREEN_COLOR, 7, 65);
-    kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
+    sprintf(string, "CX=0x%x", reg_content);
+    kprint_at(string, ERROR_SCREEN_COLOR, 7, 65);
 
     __asm__("mov %%dx, %0" : "=m" (reg_content));
-    kprint_at("DX=0x", ERROR_SCREEN_COLOR, 8, 65);
-    kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
+    sprintf(string, "DX=0x%x", reg_content);
+    kprint_at(string, ERROR_SCREEN_COLOR, 8, 65);
 
     __asm__("mov %%sp, %0" : "=m" (reg_content));
-    kprint_at("SP=0x", ERROR_SCREEN_COLOR, 10, 50);
-    kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
+    sprintf(string, "SP=0x%x", reg_content);
+    kprint_at(string, ERROR_SCREEN_COLOR, 10, 50);
 
     __asm__("mov %%ss, %0" : "=m" (reg_content));
-    kprint_at("SS=0x", ERROR_SCREEN_COLOR, 11, 50);
-    kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
+    sprintf(string, "SS=0x%x", reg_content);
+    kprint_at(string, ERROR_SCREEN_COLOR, 11, 50);
 
     __asm__("mov %%cs, %0" : "=m" (reg_content));
-    kprint_at("CS=0x", ERROR_SCREEN_COLOR, 10, 65);
-    kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
+    sprintf(string, "CS=0x%x", reg_content);
+    kprint_at(string, ERROR_SCREEN_COLOR, 10, 65);
 
     __asm__("mov %%ds, %0" : "=m" (reg_content));
-    kprint_at("DS=0x", ERROR_SCREEN_COLOR, 11, 65);
-    kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
+    sprintf(string, "DS=0x%x", reg_content);
+    kprint_at(string, ERROR_SCREEN_COLOR, 11, 65);
 
     __asm__("mov %%si, %0" : "=m" (reg_content));
-    kprint_at("SI=0x", ERROR_SCREEN_COLOR, 13, 50);
-    kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
+    sprintf(string, "SI=0x%x", reg_content);
+    kprint_at(string, ERROR_SCREEN_COLOR, 13, 50);
 
     __asm__("mov %%di, %0" : "=m" (reg_content));
-    kprint_at("DI=0x", ERROR_SCREEN_COLOR, 13, 65);
-    kprint(itoa(reg_content, reg_str, 16), ERROR_SCREEN_COLOR);
+    sprintf(string, "DI=0x%x", reg_content);
+    kprint_at(string, ERROR_SCREEN_COLOR, 13, 65);
 
     __asm__("hlt");
 }
