@@ -18,7 +18,7 @@ static void error_screen(char * message) {
     //port_byte_out(0x10, 0b00000111);
     __asm__("mov $0x1003, %ax; int $0x10");
 
-    char string[80];
+    char string[80] = {0};
     uint16_t reg_content;
 
     set_cursor_shape(0x2607);
