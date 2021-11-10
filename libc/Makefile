@@ -14,3 +14,9 @@ obj_stdlib += $(addprefix $(BUILD_DIR)libc/stdlib/, \
 )
 
 obj += $(obj_stdlib)
+
+obj_stdio += $(addprefix $(BUILD_DIR)libc/stdio/, \
+	sprintf.o \
+)
+
+obj += $(obj_stdio)
