@@ -31,7 +31,7 @@ int sprintf(char * buffer, const char * format, ...) {
                 }
             }
                 break;
-            case 'h':
+            case 'x':
             {
                 char * integerValue = itoa((int) va_arg(parametersInfos, int), tempBuffer, 16);
                 for (char c = *integerValue; c; c=*++integerValue) {
