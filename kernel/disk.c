@@ -4,31 +4,23 @@
 
 #include "disk.h"
 
-bool rw_disk(CHSDiskAddressPacket * packet, bool write) {
-    bool success;
+uint8_t rw_disk(CHSDiskAddressPacket * packet, bool write) {
+    uint8_t code;
 
-    uint16_t AX = packet->SectorCount;
-    if (write)
-        AX += 0x0300;
-    else
-        AX += 0x0200;
-    uint16_t CX = (packet->Cylinder * 0x100) + packet->Sector;
+    uint16_t AX = (write ? 0x0300 : 0x0200) + packet->SectorCount;
+    uint16_t CX = (packet->Cylinder * 0x100) + (packet->Sector & 0x3F);
     uint16_t DX = (packet->Head * 0x100) + packet->Drive;
 
     __asm__("cld;"
-            "mov %5, %%es;"
+            "movw %1, %%es;"
             "int $0x13;"
-            "jc 1f;"
-            "movw $1, %0;"
-            "jmp 2f;"
-            "1: movw $0, %0;"
-            "2:;"
-            :"=m" (success)
-            :"a" (AX),
+            "movb %%ah, %0;"
+            :"=m" (code)
+            :"m" (packet->BufferSegment),
+             "a" (AX),
              "b" (packet->BufferOffset),
              "c" (CX),
-             "d" (DX),
-             "m" (packet->BufferSegment));
+             "d" (DX));
 
-    return success;
+    return code;
 }

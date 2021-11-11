@@ -45,6 +45,6 @@ typedef struct {
     uint16_t BufferOffset;
 } CHSDiskAddressPacket;
 
-bool rw_disk(CHSDiskAddressPacket * packet, bool write);
+uint8_t rw_disk(CHSDiskAddressPacket * packet, bool write);
 
 #endif // KERNEL_DISK_H
