@@ -46,5 +46,6 @@ typedef struct {
 } CHSDiskAddressPacket;
 
 uint8_t rw_disk(CHSDiskAddressPacket * packet, bool write);
+uint8_t reset_disk(uint8_t drive);
 
 #endif // KERNEL_DISK_H

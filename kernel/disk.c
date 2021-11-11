@@ -24,3 +24,16 @@ uint8_t rw_disk(CHSDiskAddressPacket * packet, bool write) {
 
     return code;
 }
+
+uint8_t reset_disk(uint8_t drive) {
+    uint8_t code;
+
+    __asm__("movb %1, %%dl;"
+            "xor %%ax, %%ax;"
+            "int $0x13;"
+            "movb %%ah, %0;"
+            :"=m" (code)
+            :"m" (drive));
+
+    return code;
+}
