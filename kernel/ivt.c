@@ -7,10 +7,8 @@
 
 #define ERROR_SCREEN_COLOR 0x9A
 
-typedef void (*ivt_function)(void);
-
 typedef struct {
-    ivt_function function;
+    uint16_t function;
     uint16_t segment;
 } IVTentry;
 
@@ -91,6 +89,8 @@ void setupIVT(void) {
      * and interrupts from 32 to Type 255 are available for hardware and software interrupts.
      */
 
+    typedef void (*ivt_function)(void);
+
     ivt_function functions[] = {
         IVTzero,
         0, // Debug
@@ -103,7 +103,7 @@ void setupIVT(void) {
 
     for (unsigned int i = 0; i < 5; ++i) {
         if (functions[i] != (void *)0) {
-            IVTptr[i].function = functions[i];
+            IVTptr[i].function = (uint16_t)functions[i];
             IVTptr[i].segment = 0x0000;
         }
     }
