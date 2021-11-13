@@ -5,6 +5,7 @@ obj_string += $(addprefix $(BUILD_DIR)libc/string/, \
 	memset.o \
 	strlen.o \
 	strrev.o \
+	strchr.o \
 )
 
 obj += $(obj_string)
