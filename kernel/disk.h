@@ -47,5 +47,7 @@ typedef struct {
 
 uint8_t rw_disk(CHSDiskAddressPacket * packet, bool write);
 uint8_t reset_disk(uint8_t drive);
+CHSDiskAddressPacket * LBA_to_CHS(uint8_t drive, uint32_t LBA, uint8_t sector_count,
+                                  uint16_t buffer_segment, uint16_t buffer_offset);
 
 #endif // KERNEL_DISK_H
