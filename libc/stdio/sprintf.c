@@ -61,6 +61,8 @@ int sprintf(char * buffer, const char * format, ...) {
         }
     }
 
+    buffer[currentIndex++] = '\0';
+
     va_end(parametersInfos);
     return strlen(buffer);
 }
