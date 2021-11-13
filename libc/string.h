@@ -14,5 +14,6 @@ void * memset(void *, int, size_t);
 size_t strlen(const char *);
 char * strrev(char *);
 char * strchr(const char *, char);
+int strcmp(const char *, const char *);
 
 #endif // LIBC_STRING_H
