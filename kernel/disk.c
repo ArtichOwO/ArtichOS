@@ -4,6 +4,35 @@
 
 #include "disk.h"
 
+char * messages[] = {
+        "Success",
+        "Invalid Command",
+        "Cannot Find Address Mark",
+        "Attempted Write On Write Protected Disk",
+        "Sector Not Found",
+        "Reset Failed",
+        "Disk change line 'active'",
+        "Drive parameter activity failed",
+        "DMA overrun",
+        "Attempt to DMA over 64kb boundary",
+        "Bad sector detected",
+        "Bad cylinder detected",
+        "Media type not found",
+        "Invalid number of sectors",
+        "Control data address mark detected",
+        "DMA out of range",
+        "CRC/ECC data error",
+        "ECC corrected data error",
+        [0x20]="Controller failure",
+        [0x40]="Seek failure",
+        [0x80]="Drive timed out, assumed not ready",
+        [0xAA]="Drive not ready",
+        [0xBB]="Undefined error",
+        [0xCC]="Write fault",
+        [0xE0]="Status error",
+        [0xFF]="Sense operation failed"
+};
+
 uint8_t rw_disk(CHSDiskAddressPacket * packet, bool write) {
     uint8_t code;
 
