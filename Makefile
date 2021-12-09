@@ -3,11 +3,13 @@ ASM = nasm
 LD = x86_64-elf-ld
 
 ASM_FLAGS = -Wx
-LD_FLAGS = -T main.ld --oformat binary -m elf_i386
+LD_FLAGS = --oformat binary -m elf_i386
+
+include kernel/Makefile
 
 ArtichOS: $(obj)
 	@echo LD $@
-	@$(LD) $^ -o $(BUILD_DIR)/$@ $(LD_FLAGS)
+	@$(LD) $^ -T $(ld_script) -o $(BUILD_DIR)/$@ $(LD_FLAGS)
 
 .PHONY: clean run all
 
