@@ -1,24 +1,13 @@
-BUILD_DIR = output/
-CC = x86_64-elf-gcc
-CXX = x86_64-elf-g++
+BUILD_DIR = output
 ASM = nasm
 LD = x86_64-elf-ld
 
-CFLAGS = -ffreestanding \
-         -c -m16 -nostdlib -nostdinc \
-         -nostartfiles -nodefaultlibs \
-         -Wall -Wextra -Wpedantic \
-         -I libc
 ASM_FLAGS = -Wx
-LD_FLAGS = -T main.ld --oformat binary -m elf_i386
-
-include boot/Makefile
-include kernel/Makefile
-include libc/Makefile
+LD_FLAGS = -T main.ld --oformat binary -m i8086
 
 ArtichOS: $(obj)
 	@echo LD $@
-	@$(LD) $^ -o $(BUILD_DIR)$@ $(LD_FLAGS)
+	@$(LD) $^ -o $(BUILD_DIR)/$@ $(LD_FLAGS)
 
 .PHONY: clean run all
 
@@ -32,18 +21,12 @@ run: ArtichOS
 
 all: clean run
 
-
-$(BUILD_DIR)%.o: %.c
-	@mkdir -p $(dir $@)
-	@echo CC $@
-	@$(CC) $< -o $@ $(CFLAGS)
-
-$(BUILD_DIR)%.o: %.asm
+$(BUILD_DIR)/%.o: %.asm
 	@mkdir -p $(dir $@)
 	@echo ASM $@
 	@$(ASM) -f elf $^ -o $@ $(ASM_FLAGS)
 
-$(BUILD_DIR)%.bin: %.asm
+$(BUILD_DIR)/%.bin: %.asm
 	@mkdir -p $(dir $@)
 	@echo ASM $@
 	@$(ASM) -f bin $^ -o $@ $(ASM_FLAGS)
