@@ -3,7 +3,7 @@ ASM = nasm
 LD = x86_64-elf-ld
 
 ASM_FLAGS = -Wx
-LD_FLAGS = -T main.ld --oformat binary -m i8086
+LD_FLAGS = -T main.ld --oformat binary -m elf_i386
 
 ArtichOS: $(obj)
 	@echo LD $@
