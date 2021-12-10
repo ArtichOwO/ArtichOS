@@ -7,7 +7,7 @@ LD_FLAGS = --oformat binary -m elf_i386
 
 include kernel/Makefile
 
-ArtichOS: $(obj)
+ArtichOS.bin: $(obj)
 	@echo LD $@
 	@$(LD) $^ -T $(ld_script) -o $(BUILD_DIR)/$@ $(LD_FLAGS)
 
@@ -17,7 +17,7 @@ clean:
 	@rm -Rf $(BUILD_DIR)
 	@echo CLEAN
 
-run: ArtichOS
+run: ArtichOS.bin
 	qemu-system-i386 -drive format=raw,file=$(BUILD_DIR)/$<,index=0,if=floppy \
 	                 -monitor stdio -serial file:output/serial.log
 
