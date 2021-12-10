@@ -5,6 +5,7 @@ boot_obj += $(addprefix $(BUILD_DIR)/kernel/boot/, \
 
 obj += $(boot_obj) \
 	   $(addprefix $(BUILD_DIR)/kernel/, \
+	main.o \
 	port.o \
 	serial.o \
 )

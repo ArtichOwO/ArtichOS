@@ -2,7 +2,7 @@ BITS 16
 
 GLOBAL _start, boot_drive, newline_string
 EXTERN init_serial, write_serial_string, \
-       load_kernel, kernel_offset
+       load_kernel, kmain
 
 %include "kernel/tui_char.asm"
 
@@ -41,7 +41,7 @@ _start:
 
     _start.load_kernel:
     call load_kernel
-    jmp $
+    jmp kmain
 
 SECTION .boot.data
 
