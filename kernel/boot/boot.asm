@@ -4,6 +4,8 @@ GLOBAL _start, boot_drive, newline_string
 EXTERN init_serial, write_serial_string, \
        load_kernel, kernel_offset
 
+%include "kernel/tui_char.asm"
+
 SECTION .boot.text
 
 _start:
@@ -47,5 +49,5 @@ boot_drive db 0x00
 
 SECTION .boot.rodata
 
-welcome_string db 0x0A,0x0D,0x1b,"[31m","Booting...",0x1b,"[0m",0x0A,0x0D,0
-newline_string db 0x0A,0x0D,0
+welcome_string db newline,red_text,"Booting...",reset_color_text,newline,0
+newline_string db newline,0
