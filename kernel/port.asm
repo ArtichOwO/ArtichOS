@@ -27,7 +27,6 @@ outb:
 	mov ax, [bp+6]
 
 	out dx, al
-	xor ah, ah
 
 	pop bp
 	ret
