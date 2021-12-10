@@ -64,10 +64,6 @@ load_kernel:
 	pop bp
 	ret
 
-SECTION .boot.data
-
-test_error db 0x00,0x00
-
 SECTION .boot.rodata
 
 floppy db "FLP",0
