@@ -59,8 +59,13 @@ outw:
 	ret
 
 io_wait:
+	push bp
+	mov bp, sp
+
 	push word 0
 	push word 0x80
 	call outb
 	add sp, 4
+
+	pop bp
 	ret
