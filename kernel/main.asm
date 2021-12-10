@@ -21,8 +21,8 @@ kmain:
 SECTION .kernel.rodata
 
 welcome_string db newline, \
-	"ฺฤฤฤฤฤฤฤฤฤฤฤฤฤฤฟ",newline, \
-	"ณ",cyan_text,"Kernel loaded!",reset_color_text,"ณ",newline, \
-	"ฦออออออออออออออต",newline, \
-	"ณ ",yellow_text,"Welcome! :3",reset_color_text,"  ณ",newline, \
-	"ิออออออออออออออพ",0
+	"+--------------+",newline, \
+	"|",cyan_text,"Kernel loaded!",reset_color_text,"|",newline, \
+	"+--------------+",newline, \
+	"| ",yellow_text,"Welcome! :3",reset_color_text,"  |",newline, \
+	"+--------------+",0
