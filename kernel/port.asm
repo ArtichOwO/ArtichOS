@@ -5,67 +5,67 @@ GLOBAL inb, outb, inw, outw, io_wait
 SECTION .boot.text
 
 inb:
-	; 0: Port
-	; Ret: Result
-	push bp
-	mov bp, sp
+    ; 0: Port
+    ; Ret: Result
+    push bp
+    mov bp, sp
 
-	mov dx, [bp+4]
+    mov dx, [bp+4]
 
-	in al, dx
+    in al, dx
 
-	pop bp
-	ret
+    pop bp
+    ret
 
 outb:
-	; 0: Port
-	; 1: Data
-	push bp
-	mov bp, sp
+    ; 0: Port
+    ; 1: Data
+    push bp
+    mov bp, sp
 
-	mov dx, [bp+4]
-	mov ax, [bp+6]
+    mov dx, [bp+4]
+    mov ax, [bp+6]
 
-	out dx, al
+    out dx, al
 
-	pop bp
-	ret
+    pop bp
+    ret
 
 inw:
-	; 0: Port
-	; Ret: Result
-	push bp
-	mov bp, sp
+    ; 0: Port
+    ; Ret: Result
+    push bp
+    mov bp, sp
 
-	mov dx, [bp+4]
+    mov dx, [bp+4]
 
-	in ax, dx
+    in ax, dx
 
-	pop bp
-	ret
+    pop bp
+    ret
 
 outw:
-	; 0: Port
-	; 1: Data
-	push bp
-	mov bp, sp
+    ; 0: Port
+    ; 1: Data
+    push bp
+    mov bp, sp
 
-	mov dx, [bp+4]
-	mov ax, [bp+6]
+    mov dx, [bp+4]
+    mov ax, [bp+6]
 
-	out dx, ax
+    out dx, ax
 
-	pop bp
-	ret
+    pop bp
+    ret
 
 io_wait:
-	push bp
-	mov bp, sp
+    push bp
+    mov bp, sp
 
-	push word 0
-	push word 0x80
-	call outb
-	add sp, 4
+    push word 0
+    push word 0x80
+    call outb
+    add sp, 4
 
-	pop bp
-	ret
+    pop bp
+    ret
