@@ -19,5 +19,6 @@ SECTIONS {
 		*(.kernel.text);
 		*(.kernel.data);
 		*(.kernel.rodata);
+		*(.kernel.bss);
 	} > KERNEL
 }
