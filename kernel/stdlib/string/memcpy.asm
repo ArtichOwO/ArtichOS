@@ -2,7 +2,7 @@ BITS 16
 
 GLOBAL memcpy
 
-SECTION .kernel.text
+SECTION .text
 
 memcpy:
     ; 0: Destination offset

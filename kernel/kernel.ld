@@ -16,9 +16,9 @@ SECTIONS {
     } > BOOTLOADER
 
     .kernel : AT(__BOOT_END) {
-        *(.kernel.text);
-        *(.kernel.data);
-        *(.kernel.rodata);
-        *(.kernel.bss);
+        *(.text);
+        *(.data);
+        *(.rodata);
+        *(.bss);
     } > KERNEL
 }

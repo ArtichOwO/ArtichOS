@@ -2,7 +2,7 @@ BITS 16
 
 GLOBAL memset
 
-SECTION .kernel.text
+SECTION .text
 
 memset:
     ; 0: Buffer offset

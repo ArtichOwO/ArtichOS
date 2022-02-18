@@ -5,7 +5,7 @@ EXTERN write_serial_string
 
 %include "kernel/tui_char.asm"
 
-SECTION .kernel.text
+SECTION .text
 
 kmain:
     push bp
@@ -18,7 +18,7 @@ kmain:
     pop bp
     jmp $
 
-SECTION .kernel.rodata
+SECTION .rodata
 
 welcome_string db newline, \
     "+--------------+",newline, \
