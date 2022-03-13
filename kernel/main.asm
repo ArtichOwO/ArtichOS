@@ -1,29 +1,22 @@
 BITS 16
 
 GLOBAL kmain
-EXTERN write_serial_string
-
-%include "kernel/tui_char.asm"
+EXTERN vga_print_string
 
 SECTION .text
 
 kmain:
-    push bp
-    mov bp, sp
+    mov si, welcome_string
+    call vga_print_string
 
-    push word welcome_string
-    call write_serial_string
-    add sp, 2
-
-    pop bp
     jmp $
 
 SECTION .rodata
 
-welcome_string db newline, \
-    "+--------------+",newline, \
-    "|",cyan_text,"Kernel loaded!",reset_color_text,"|",newline, \
-    "+--------------+",newline, \
-    "| ",yellow_text,"Welcome! :3",reset_color_text,"  |",newline, \
-    "+--------------+",0
+welcome_string db \
+    `\n\r+--------------+\n\r`, \
+        `|Kernel loaded!|\n\r`, \
+        `+--------------+\n\r`, \
+        `| Welcome! :3  |\n\r`, \
+        `+--------------+\n\r`,0
 

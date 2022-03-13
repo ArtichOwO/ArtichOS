@@ -13,7 +13,7 @@ obj += $(boot_obj) \
 	   $(addprefix $(BUILD_DIR)/kernel/, \
 	main.o \
 	port.o \
-	serial.o \
+	vga_text.o \
 )
 
 ld_script += kernel/kernel.ld

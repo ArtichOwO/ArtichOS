@@ -1,17 +1,11 @@
 BITS 16
 
 GLOBAL _start, boot_drive, newline_string
-EXTERN init_serial, write_serial_string, \
-       load_kernel, kmain
+EXTERN load_kernel, kmain, vga_print_string
 
-%include "kernel/tui_char.asm"
-
-SECTION .boot.text
+SECTION .text.boot
 
 _start:
-    push bp
-    mov bp, sp
-
     mov [boot_drive], dl
 
     cli
@@ -26,28 +20,21 @@ _start:
     sti
     cld
 
-    call init_serial
-    cmp ax, 0
-    jnz _start.no_serial
-
-    push word welcome_string
-    call write_serial_string
-    add sp, 2
+    mov si, welcome_string
+    mov bl, 0x0C
+    call vga_print_string
 
     jmp _start.load_kernel
-
-    _start.no_serial:
-    jmp $
 
     _start.load_kernel:
     call load_kernel
     jmp kmain
 
-SECTION .boot.data
+SECTION .data.boot
 
 boot_drive db 0x00
 
-SECTION .boot.rodata
+SECTION .rodata.boot
 
-welcome_string db newline,red_text,"Booting...",reset_color_text,newline,0
-newline_string db newline,0
+welcome_string db `\n\rBootloader successfully loaded! \n\r`,0
+newline_string db `\n\r`,0

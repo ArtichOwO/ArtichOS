@@ -7,9 +7,10 @@ MEMORY {
 
 SECTIONS {
     .boot : {
-        *(.boot.text);
-        *(.boot.data);
-        *(.boot.rodata);
+        *(.text.boot);
+        *(.data.boot);
+        *(.rodata.boot);
+        *(.bss.boot);
         . = 0x1FE;
         SHORT(0xAA55);
         __BOOT_END = .;
