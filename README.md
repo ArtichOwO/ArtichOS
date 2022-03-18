@@ -14,4 +14,5 @@ Coming soon too!
 
 - https://wiki.osdev.org/ which helped me a lot
 - heavy inspiration from https://github.com/cfenollosa/os-tutorial (I started with this tutorial!)
+- also from https://github.com/alexfru/BootProg, helped me a lot with loading the kernel from a FAT12 filesystem
 - some links specified in files

@@ -1,4 +1,4 @@
-ENTRY(_start);
+ENTRY(BS_jmpBoot);
 
 MEMORY {
     BOOTLOADER (rwx) : ORIGIN = 0x7C00, LENGTH = 0x200
@@ -7,6 +7,8 @@ MEMORY {
 
 SECTIONS {
     .boot : {
+        *(.rodata.boot.BPB);
+
         *(.text.boot);
         *(.data.boot);
         *(.rodata.boot);

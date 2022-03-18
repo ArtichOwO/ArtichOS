@@ -1,6 +1,8 @@
 boot_obj += $(addprefix $(BUILD_DIR)/kernel/boot/, \
 	boot.o \
 	load_kernel.o \
+	read_sector.o \
+	read_cluster.o \
 )
 
 stdlib_obj += $(addprefix $(BUILD_DIR)/kernel/stdlib/, \

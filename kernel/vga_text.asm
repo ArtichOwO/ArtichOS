@@ -5,8 +5,10 @@ GLOBAL vga_print_string
 SECTION .text.boot
 
 vga_print_string:
-    ; SI: String
+    ; SI -> String
     ; BL: Color
+
+    pusha
 
     mov bh, 0
     mov ah, 0x0E
@@ -21,4 +23,5 @@ vga_print_string:
     jmp vga_print_string.is_null
     
     vga_print_string.end:
+    popa
     ret
