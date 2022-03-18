@@ -5,37 +5,29 @@ GLOBAL memcpy
 SECTION .text
 
 memcpy:
-    ; 0: Destination offset
-    ; 1: Destination segment
-    ; 2: Source offset
-    ; 3: Source segment
-    ; 4: Size
-    ; Ret: Destination offset
-    push bp
-    mov bp, sp
+    ; DI: Destination offset
+    ; AX: Destination segment
+    ; SI: Source offset
+    ; BX: Source segment
+    ; CX: Size
+    
+    pusha
 
-    xor cx, cx
+    memcpy.loop:
 
-    memcpy.for:
-    cmp cx, [bp+12]
-    je memcpy.end
+    push bx
+    pop es
+    mov dl, [es:si]
 
-    mov ax, [bp+10]
-    mov es, ax
-    mov si, [bp+8]
-    add si, cx
-    mov byte dl, [es:si]
+    push ax
+    pop es
+    mov [es:di], dl
 
-    mov ax, [bp+6]
-    mov es, ax
-    mov di, [bp+4]
-    add di, cx
-    mov byte [es:di], dl
+    inc si
+    inc di
 
-    inc cx
-    jmp memcpy.for
+    loop memcpy.loop
 
-    memcpy.end:
-    mov ax, [bp+4]
-    pop bp
+    popa
+
     ret
