@@ -5,32 +5,21 @@ GLOBAL memset
 SECTION .text
 
 memset:
-    ; 0: Buffer offset
-    ; 1: Buffer segment
-    ; 2: Value
-    ; 3: Size
+    ; DI: Buffer offset
+    ; ES: Buffer segment
+    ; DL: Value
+    ; CX: Size
     ; Ret: Buffer offset
-    push bp
-    mov bp, sp
+    
+    pusha
 
-    xor cx, cx
-    mov byte dl, [bp+8]
+    memset.loop:
 
-    mov ax, [bp+6]
-    mov es, ax
-
-    memset.for:
-    cmp cx, [bp+10]
-    je memset.end
-
-    mov di, [bp+4]
-    add di, cx
     mov [es:di], dl
-    inc cx
+    inc di
 
-    jmp memset.for
+    loop memset.loop
 
-    memset.end:
-    mov ax, [bp+4]
-    pop bp
+    popa
+
     ret
