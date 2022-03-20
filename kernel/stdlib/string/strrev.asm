@@ -23,7 +23,7 @@ strrev:
 
     strrev.loop:
     cmp si, di
-    jz strrev.done
+    jae strrev.done
 
     mov dl, [si]
     mov dh, [di]
@@ -32,6 +32,8 @@ strrev:
 
     inc si
     dec di
+
+    jmp strrev.loop
 
     strrev.done:
     ret
