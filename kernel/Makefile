@@ -10,6 +10,7 @@ stdlib_obj += $(addprefix $(BUILD_DIR)/kernel/stdlib/, \
 	string/memcpy.o \
 	string/strlen.o \
 	string/strrev.o \
+	itoa.o \
 )
 
 obj += $(boot_obj) \
