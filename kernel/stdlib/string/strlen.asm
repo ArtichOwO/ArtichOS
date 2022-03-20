@@ -5,8 +5,7 @@ GLOBAL strlen
 SECTION .text
 
 strlen:
-    ; ES -> String segment
-    ; SI -> String offset
+    ; ES:SI -> String
     ; Ret: String size
     
     xor bx, bx

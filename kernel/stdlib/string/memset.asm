@@ -9,7 +9,6 @@ memset:
     ; ES: Buffer segment
     ; DL: Value
     ; CX: Size
-    ; Ret: Buffer offset
     
     pusha
 
